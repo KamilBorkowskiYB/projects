@@ -1,0 +1,163 @@
+/*
+https://web.archive.org/web/20220604101104/https://pl.wikipedia.org/wiki/Robert_Mak%C5%82owicz
+*/
+body{
+    display: flex;
+    font-family: sans-serif;
+    background-color:#f8f8f8;
+}
+.lewa_strona img{
+    height: auto;
+    max-width: 100%;
+    margin-bottom: 2em;
+}
+.lewa_strona{
+    width: 10%;
+    font-size: 12px;
+    padding-left: 1.5em;
+    padding-top: 1em;
+}
+.lewa_strona ul{
+    list-style: none;
+    padding: 0;
+    margin-bottom: 2em;
+}
+a{
+    text-decoration: none;
+    color:rgb(52, 106, 206);
+}
+.lewa_strona li{
+    margin-bottom: 0.4em;
+    
+}
+.lewa_strona span{
+    color: gray;
+}
+.edytuj_linki{
+    padding-left: 3.5em;
+}
+main{
+    flex-grow: 1;
+}
+.gora{
+    padding-right: 0.6em;
+}
+.dane_konta{
+    display: flex;
+    justify-content: right;
+    gap: 0.8em;
+    font-size: 12px;
+    padding: 0.3em 0em 1.9em;
+}
+.zakladki{
+    display: flex;
+    justify-content:space-between;
+    font-size: 13px;
+    margin-left: 0.8em;
+}
+.zakladki_prawo{
+    display: flex;
+}
+.zakladki_prawo input{
+    padding: 5px 2.15384615em 5px 0.4em;
+}
+.zakladki a{
+    padding-bottom: 0.5em;
+}
+.z_p_linki{
+    display: flex;
+    gap: 1em;
+    padding-right: 1em;
+}
+.z_p_linki a{
+    align-self: flex-end;
+}
+.zakladki_lewo{
+    display: flex;
+    gap: 1em;
+}
+.zakladki_lewo a{
+    align-self: flex-end;
+}
+.black{
+    color: black;
+}
+h1{
+    font-family: 'Linux Libertine','Georgia','Times',serif;
+    font-size: 28.8px;
+    font-weight: normal;
+    margin: 0 0 14.2px;
+    border-bottom: 1px solid #a2a9b1;
+}
+.tekst_glowny{
+    padding: 20px 24px 24px 24px;
+    background-color: white;
+    line-height: 1.6;
+    font-size: 14px;
+    border-top: 1px solid #a2a9b1;
+    border-left: 1px solid #a2a9b1;
+    border-bottom: 1px solid #a2a9b1;
+}
+.tabela1{
+    background-color:#f8f8f8;
+    border-spacing: 0;
+    border: 1px solid #a2a9b1;
+    font-size: 85%;
+    width: 250px;
+    float: right;
+    margin: 0 0 0.4em 1.4em
+}
+.tabela1 th{
+  background-color: #eee;
+  font-weight: normal;
+}
+.tabela1 td, .tabela1 th{
+    padding: 4px;
+    text-align: left;
+    vertical-align: top;
+}
+.zdjecie_tabelki1 td, .nag_tab1 td{
+    text-align: center;
+    border-bottom: 1px solid #a2a9b1;
+}
+.tabela1 img{
+    height: auto;
+    max-width: 161px;
+}
+.nag_tab1 td{
+    font-size: larger;
+    font-weight: bold;
+    background-color: #eee;
+}
+p{
+    margin: 7px 0;
+}
+.spis-tresci{
+    background-color: #f8f8f8;
+    border: 1px solid #a2a9b1;
+    width: fit-content;
+    padding: 7px;
+}
+.spis-tresci ul{
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+.tytul-sp{
+    display: flex;
+    justify-content: center;
+    font-weight: normal;
+}
+h2 {
+    border-bottom: 1px solid #a2a9b1;  
+}
+.podtytul-2{
+    font-family: 'Linux Libertine','Georgia','Times',serif;
+    font-size: 21px;
+    font-weight: normal;
+    margin: 0 0 14.2px;
+}
+.pt-2linki{
+    font-size: 13px;
+    font-weight: normal;
+}
