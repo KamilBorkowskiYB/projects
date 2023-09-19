@@ -5,6 +5,7 @@ btn_width = 5
 font_size = 14
 calc_size = 24
 
+
 def add_to_calculation(symbol):
     global calculation
     calculation += str(symbol)
@@ -27,6 +28,7 @@ def clear_field():
     global calculation
     calculation = ""
     text_resoult.delete(1.0, "end")
+
 
 def lay_size1():
     window.geometry('300x350')
@@ -73,6 +75,8 @@ def lay_size3():
 window = tk.Tk()
 window.geometry('300x350')
 window.title("Calculator with tkinter")
+window.tk.call('source', 'Azure/azure.tcl')
+window.tk.call('set_theme', 'dark')
 
 text_resoult = tk.Text(window, height=2, width=16, font=("Arial", calc_size))
 text_resoult.grid(columnspan=5)
