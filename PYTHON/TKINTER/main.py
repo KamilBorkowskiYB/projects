@@ -28,9 +28,50 @@ def clear_field():
     calculation = ""
     text_resoult.delete(1.0, "end")
 
+def lay_size1():
+    window.geometry('300x350')
+    global btn_width
+    global font_size
+    global calc_size
+    btn_width = 5
+    font_size = 14
+    calc_size = 24
+    for widget in window.winfo_children():
+        if isinstance(widget, tk.Button):
+            widget.config(font=("Arial", font_size))
+    text_resoult.config(font=("Arial", calc_size))
+
+
+def lay_size2():
+    window.geometry('505x600')
+    global btn_width
+    global font_size
+    global calc_size
+    btn_width = 7
+    font_size = 28
+    calc_size = 42
+    for widget in window.winfo_children():
+        if isinstance(widget, tk.Button):
+            widget.config(font=("Arial", font_size))
+    text_resoult.config(font=("Arial", calc_size))
+
+
+def lay_size3():
+    window.geometry('700x800')
+    global btn_width
+    global font_size
+    global calc_size
+    btn_width = 10
+    font_size = 40
+    calc_size = 57
+    for widget in window.winfo_children():
+        if isinstance(widget, tk.Button):
+            widget.config(font=("Arial", font_size))
+    text_resoult.config(font=("Arial", calc_size))
+
 
 window = tk.Tk()
-window.geometry('600x600')
+window.geometry('300x350')
 window.title("Calculator with tkinter")
 
 text_resoult = tk.Text(window, height=2, width=16, font=("Arial", calc_size))
@@ -74,10 +115,10 @@ btn_equal.grid(row=6, column=3, columnspan=2)
 btn_clear = tk.Button(window, text="Clear", command=lambda: clear_field(), width=btn_width*2+1, font=("Arial", font_size))
 btn_clear.grid(row=6, column=1, columnspan=2)
 
-btn_size1 = tk.Button(window, text="Size1", width=5, font=("Arial", 14))
-btn_size1.grid(row=7, column=1, columnspan=2)
-btn_size2 = tk.Button(window, text="Size2", width=5, font=("Arial", 14))
+btn_size1 = tk.Button(window, text="Size1", command=lambda: lay_size1(), width=7, font=("Arial", font_size))
+btn_size1.grid(row=7, column=1, columnspan=2, sticky="W")
+btn_size2 = tk.Button(window, text="Size2", command=lambda: lay_size2(), width=7, font=("Arial", font_size))
 btn_size2.grid(row=7, column=2, columnspan=2)
-btn_size3 = tk.Button(window, text="Size3", width=5, font=("Arial", 14))
-btn_size3.grid(row=7, column=3, columnspan=2)
+btn_size3 = tk.Button(window, text="Size3", command=lambda: lay_size3(), width=7, font=("Arial", font_size))
+btn_size3.grid(row=7, column=3, columnspan=2, sticky="E")
 window.mainloop()
