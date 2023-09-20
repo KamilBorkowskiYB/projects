@@ -45,7 +45,7 @@ def lay_size1():
 
 
 def lay_size2():
-    window.geometry('505x600')
+    window.geometry('505x670')
     global btn_width
     global font_size
     global calc_size
@@ -59,7 +59,7 @@ def lay_size2():
 
 
 def lay_size3():
-    window.geometry('700x800')
+    window.geometry('704x950')
     global btn_width
     global font_size
     global calc_size
@@ -125,4 +125,11 @@ btn_size2 = tk.Button(window, text="Size2", command=lambda: lay_size2(), width=7
 btn_size2.grid(row=7, column=2, columnspan=2)
 btn_size3 = tk.Button(window, text="Size3", command=lambda: lay_size3(), width=7, font=("Arial", font_size))
 btn_size3.grid(row=7, column=3, columnspan=2, sticky="E")
+
+btn_theme1 = tk.Button(window, text="Theme1", width=7, font=("Arial", font_size))
+btn_theme1.grid(row=8, column=1, columnspan=2, sticky="W")
+btn_theme2 = tk.Button(window, text="Theme2", width=7, font=("Arial", font_size))
+btn_theme2.grid(row=8, column=2, columnspan=2)
+btn_theme3 = tk.Button(window, text="Theme3", width=7, font=("Arial", font_size))
+btn_theme3.grid(row=8, column=3, columnspan=2, sticky="E")
 window.mainloop()
