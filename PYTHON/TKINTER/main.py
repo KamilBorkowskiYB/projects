@@ -30,46 +30,22 @@ def clear_field():
     text_resoult.delete(1.0, "end")
 
 
-def lay_size1():
-    window.geometry('300x350')
+def lay_size(bs, fs, cs, w):
+    window.geometry(w)
     global btn_width
     global font_size
     global calc_size
-    btn_width = 5
-    font_size = 14
-    calc_size = 24
+    btn_width = bs
+    font_size = fs
+    calc_size = cs
     for widget in window.winfo_children():
         if isinstance(widget, tk.Button):
             widget.config(font=("Arial", font_size))
     text_resoult.config(font=("Arial", calc_size))
 
 
-def lay_size2():
-    window.geometry('505x670')
-    global btn_width
-    global font_size
-    global calc_size
-    btn_width = 7
-    font_size = 28
-    calc_size = 42
-    for widget in window.winfo_children():
-        if isinstance(widget, tk.Button):
-            widget.config(font=("Arial", font_size))
-    text_resoult.config(font=("Arial", calc_size))
-
-
-def lay_size3():
-    window.geometry('704x950')
-    global btn_width
-    global font_size
-    global calc_size
-    btn_width = 10
-    font_size = 40
-    calc_size = 57
-    for widget in window.winfo_children():
-        if isinstance(widget, tk.Button):
-            widget.config(font=("Arial", font_size))
-    text_resoult.config(font=("Arial", calc_size))
+def theme1():
+    pass
 
 
 window = tk.Tk()
@@ -119,14 +95,14 @@ btn_equal.grid(row=6, column=3, columnspan=2)
 btn_clear = tk.Button(window, text="Clear", command=lambda: clear_field(), width=btn_width*2+1, font=("Arial", font_size))
 btn_clear.grid(row=6, column=1, columnspan=2)
 
-btn_size1 = tk.Button(window, text="Size1", command=lambda: lay_size1(), width=7, font=("Arial", font_size))
+btn_size1 = tk.Button(window, text="Size1", command=lambda: lay_size(5, 14, 24, '300x350'), width=7, font=("Arial", font_size))
 btn_size1.grid(row=7, column=1, columnspan=2, sticky="W")
-btn_size2 = tk.Button(window, text="Size2", command=lambda: lay_size2(), width=7, font=("Arial", font_size))
+btn_size2 = tk.Button(window, text="Size2", command=lambda: lay_size(7, 28, 42, '505x670'), width=7, font=("Arial", font_size))
 btn_size2.grid(row=7, column=2, columnspan=2)
-btn_size3 = tk.Button(window, text="Size3", command=lambda: lay_size3(), width=7, font=("Arial", font_size))
+btn_size3 = tk.Button(window, text="Size3", command=lambda: lay_size(10, 40, 57, '704x950'), width=7, font=("Arial", font_size))
 btn_size3.grid(row=7, column=3, columnspan=2, sticky="E")
 
-btn_theme1 = tk.Button(window, text="Theme1", width=7, font=("Arial", font_size))
+btn_theme1 = tk.Button(window, text="Theme1", command=lambda: theme1(), width=7, font=("Arial", font_size))
 btn_theme1.grid(row=8, column=1, columnspan=2, sticky="W")
 btn_theme2 = tk.Button(window, text="Theme2", width=7, font=("Arial", font_size))
 btn_theme2.grid(row=8, column=2, columnspan=2)
