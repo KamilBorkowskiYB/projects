@@ -44,8 +44,8 @@ def lay_size(bs, fs, cs, w):
     text_resoult.config(font=("Arial", calc_size))
 
 
-def theme1():
-    pass
+def theme(th):
+    window.tk.call('set_theme', th)
 
 
 window = tk.Tk()
@@ -102,9 +102,9 @@ btn_size2.grid(row=7, column=2, columnspan=2)
 btn_size3 = tk.Button(window, text="Size3", command=lambda: lay_size(10, 40, 57, '704x950'), width=7, font=("Arial", font_size))
 btn_size3.grid(row=7, column=3, columnspan=2, sticky="E")
 
-btn_theme1 = tk.Button(window, text="Theme1", command=lambda: theme1(), width=7, font=("Arial", font_size))
+btn_theme1 = tk.Button(window, text="Theme1", command=lambda: theme('light'), width=7, font=("Arial", font_size))
 btn_theme1.grid(row=8, column=1, columnspan=2, sticky="W")
-btn_theme2 = tk.Button(window, text="Theme2", width=7, font=("Arial", font_size))
+btn_theme2 = tk.Button(window, text="Theme2", command=lambda: theme('dark'), width=7, font=("Arial", font_size))
 btn_theme2.grid(row=8, column=2, columnspan=2)
 btn_theme3 = tk.Button(window, text="Theme3", width=7, font=("Arial", font_size))
 btn_theme3.grid(row=8, column=3, columnspan=2, sticky="E")
