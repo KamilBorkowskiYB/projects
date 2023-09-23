@@ -8,7 +8,9 @@ def calculation():
     d = pizza_D.get(1.0, "end-1c")
     p = pizza_price.get(1.0, "end-1c")
     area = (float(d)/2)*(float(d)/2)*3.14
+    worth = area/(float(p))
     print(area)
+    print(worth)
     print(float(d)+float(p))
 
 label_d = tk.Label(root,text = "Diameter of pizza")
