@@ -6,8 +6,8 @@ root.title('Pizza Worth Calc')
 
 
 def calculation():
-    d = pizza_D.get(1.0, "end-1c")
-    p = pizza_price.get(1.0, "end-1c")
+    d = pizza_D.get()
+    p = pizza_price.get()
     area = (float(d)/2)*(float(d)/2)*3.14
     worth = area/(float(p))
     pizza_area.config(state='normal')
@@ -28,9 +28,9 @@ def calculation():
 
 # widgets
 label_d = tk.Label(root, text="Diameter of pizza")
-pizza_D = tk.Text(root, height=1, width=20, font=("Arial", 24), pady=10, padx=10)
+pizza_D = tk.Entry(root, justify='center', width=20, font=("Arial", 24))
 label_p = tk.Label(root, text="Pizza's price")
-pizza_price = tk.Text(root, height=1, width=20, font=("Arial", 24), pady=10, padx=10)
+pizza_price = tk.Entry(root, justify='center', width=20, font=("Arial", 24))
 btn_calc = tk.Button(root, text="Calculate", command=lambda: calculation(), font=("Arial", 24), padx=50)
 label_area = tk.Label(root, text="Pizza's area")
 pizza_area = tk.Text(root, height=1, width=20, state='disabled', font=("Arial", 24), pady=10, padx=10)
@@ -42,8 +42,6 @@ label_SPACE1 = tk.Label(root, text=" ", pady=pad_y)
 label_SPACE2 = tk.Label(root, text=" ", pady=pad_y)
 label_SPACE3 = tk.Label(root, text=" ", pady=pad_y)
 
-pizza_price.tag_configure("space", justify='center')
-pizza_price.tag_add("space", "1.0", "end")
 
 # pack
 label_SPACE1.pack()
