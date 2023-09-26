@@ -3,42 +3,54 @@ import tkinter as tk
 # X=1 O=0
 XorO = 1
 moves = 0
+play_on = True
 
 
 def btn_state(b):
     global XorO
     global moves
-    if b['text'] == " ":
-        if XorO == 1:
-            b['text'] = 'X'
-            moves += 1
-            XorO = 0
-        elif XorO == 0:
-            b['text'] = 'Y'
-            moves += 1
-            XorO = 1
+    global play_on
+    if play_on is True:
+        if b['text'] == " ":
+            if XorO == 1:
+                b['text'] = 'X'
+                moves += 1
+                XorO = 0
+            elif XorO == 0:
+                b['text'] = 'O'
+                moves += 1
+                XorO = 1
+
+
+def who_won(b):
+    global play_on
+    if b['text'] == 'O':
+        print("O won")
+        play_on = False
+    if b['text'] == 'X':
+        print("X won")
+        play_on = False
 
 
 def win():
-    global moves
     if (btn_1['text'] == btn_2['text'] == btn_3['text']) and btn_1['text'] != " ":
-        print("win")
+        who_won(btn_1)
     if (btn_1['text'] == btn_4['text'] == btn_7['text']) and btn_1['text'] != " ":
-        print("win")
+        who_won(btn_1)
     if (btn_1['text'] == btn_5['text'] == btn_9['text']) and btn_1['text'] != " ":
-        print("win")
+        who_won(btn_1)
     if (btn_2['text'] == btn_5['text'] == btn_8['text']) and btn_2['text'] != " ":
-        print("win")
+        who_won(btn_2)
     if (btn_3['text'] == btn_6['text'] == btn_9['text']) and btn_3['text'] != " ":
-        print("win")
+        who_won(btn_3)
     if (btn_3['text'] == btn_5['text'] == btn_7['text']) and btn_3['text'] != " ":
-        print("win")
+        who_won(btn_3)
     if (btn_4['text'] == btn_5['text'] == btn_6['text']) and btn_4['text'] != " ":
-        print("win")
+        who_won(btn_4)
     if (btn_7['text'] == btn_8['text'] == btn_9['text']) and btn_7['text'] != " ":
-        print("win")
-    if moves >= 9:
-        print("draw")
+        who_won(btn_7)
+    elif moves >= 9:
+        print("Draw")
 
 
 root = tk.Tk()
