@@ -55,6 +55,25 @@ def win():
         info['text'] = 'Draw'
 
 
+def reset():
+    global moves
+    global play_on
+    global XorO
+    moves = 0
+    play_on = True
+    XorO = 1
+    info['text'] = "X on move"
+    btn_1['text'] = " "
+    btn_2['text'] = " "
+    btn_3['text'] = " "
+    btn_4['text'] = " "
+    btn_5['text'] = " "
+    btn_6['text'] = " "
+    btn_7['text'] = " "
+    btn_8['text'] = " "
+    btn_9['text'] = " "
+
+
 root = tk.Tk()
 root.geometry('375x600')
 root.title('Tic-Tac-Toe')
@@ -83,6 +102,6 @@ btn_9.grid(row=2, column=2)
 
 info = tk.Label(root, text="X on move", font=("Arial", 30), pady=30)
 info.pack()
-btn_res = tk.Button(root, text="Restart", width=10, font=("Arial", 24))
+btn_res = tk.Button(root, text="Restart", command=lambda: reset(), width=10, font=("Arial", 24))
 btn_res.pack()
 root.mainloop()
