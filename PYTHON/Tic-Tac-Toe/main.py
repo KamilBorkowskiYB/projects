@@ -36,20 +36,44 @@ def who_won(b):
 
 def win():
     if (btn_1['text'] == btn_2['text'] == btn_3['text']) and btn_1['text'] != " ":
+        btn_1.config(bg='red')
+        btn_2.config(bg='red')
+        btn_3.config(bg='red')
         who_won(btn_1)
     if (btn_1['text'] == btn_4['text'] == btn_7['text']) and btn_1['text'] != " ":
+        btn_1.config(bg='red')
+        btn_4.config(bg='red')
+        btn_7.config(bg='red')
         who_won(btn_1)
     if (btn_1['text'] == btn_5['text'] == btn_9['text']) and btn_1['text'] != " ":
+        btn_1.config(bg='red')
+        btn_5.config(bg='red')
+        btn_9.config(bg='red')
         who_won(btn_1)
     if (btn_2['text'] == btn_5['text'] == btn_8['text']) and btn_2['text'] != " ":
+        btn_2.config(bg='red')
+        btn_5.config(bg='red')
+        btn_8.config(bg='red')
         who_won(btn_2)
     if (btn_3['text'] == btn_6['text'] == btn_9['text']) and btn_3['text'] != " ":
+        btn_3.config(bg='red')
+        btn_6.config(bg='red')
+        btn_9.config(bg='red')
         who_won(btn_3)
     if (btn_3['text'] == btn_5['text'] == btn_7['text']) and btn_3['text'] != " ":
+        btn_3.config(bg='red')
+        btn_5.config(bg='red')
+        btn_7.config(bg='red')
         who_won(btn_3)
     if (btn_4['text'] == btn_5['text'] == btn_6['text']) and btn_4['text'] != " ":
+        btn_4.config(bg='red')
+        btn_5.config(bg='red')
+        btn_6.config(bg='red')
         who_won(btn_4)
     if (btn_7['text'] == btn_8['text'] == btn_9['text']) and btn_7['text'] != " ":
+        btn_7.config(bg='red')
+        btn_8.config(bg='red')
+        btn_9.config(bg='red')
         who_won(btn_7)
     elif moves >= 9:
         info['text'] = 'Draw'
@@ -63,15 +87,15 @@ def reset():
     play_on = True
     XorO = 1
     info['text'] = "X on move"
-    btn_1['text'] = " "
-    btn_2['text'] = " "
-    btn_3['text'] = " "
-    btn_4['text'] = " "
-    btn_5['text'] = " "
-    btn_6['text'] = " "
-    btn_7['text'] = " "
-    btn_8['text'] = " "
-    btn_9['text'] = " "
+    btn_1.config(bg='white', text=" ")
+    btn_2.config(bg='white', text=" ")
+    btn_3.config(bg='white', text=" ")
+    btn_4.config(bg='white', text=" ")
+    btn_5.config(bg='white', text=" ")
+    btn_6.config(bg='white', text=" ")
+    btn_7.config(bg='white', text=" ")
+    btn_8.config(bg='white', text=" ")
+    btn_9.config(bg='white', text=" ")
 
 
 root = tk.Tk()
