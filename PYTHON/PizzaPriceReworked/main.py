@@ -18,14 +18,27 @@ def calculation():
     pizza_worth_p1.insert(1.0, str(worth))
     pizza_area_p1.config(state='disabled')
     pizza_worth_p1.config(state='disabled')
-    print(area)
-    print(worth)
-    print(root.winfo_width())
-    print(root.winfo_height())
     pizza_area_p1.tag_configure("space", justify='center')
     pizza_area_p1.tag_add("space", "1.0", "end")
     pizza_worth_p1.tag_configure("space", justify='center')
     pizza_worth_p1.tag_add("space", "1.0", "end")
+
+    d2 = pizza_D_p2.get()
+    p2 = pizza_price_p2.get()
+    area2 = (float(d2)/2)*(float(d2)/2)*3.14
+    worth2 = area2/(float(p2))
+    pizza_area_p2.config(state='normal')
+    pizza_worth_p2.config(state='normal')
+    pizza_area_p2.delete("1.0", "end")
+    pizza_worth_p2.delete("1.0", "end")
+    pizza_area_p2.insert(1.0, str(area2))
+    pizza_worth_p2.insert(1.0, str(worth2))
+    pizza_area_p2.config(state='disabled')
+    pizza_worth_p2.config(state='disabled')
+    pizza_area_p2.tag_configure("space", justify='center')
+    pizza_area_p2.tag_add("space", "1.0", "end")
+    pizza_worth_p2.tag_configure("space", justify='center')
+    pizza_worth_p2.tag_add("space", "1.0", "end")
 
 
 # frames
@@ -96,4 +109,3 @@ label_worth_p2.grid(row=0, column=1)
 pizza_worth_p1.grid(row=1, column=0)
 pizza_worth_p2.grid(row=1, column=1)
 root.mainloop()
-
