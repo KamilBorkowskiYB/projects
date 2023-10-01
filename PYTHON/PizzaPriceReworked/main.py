@@ -6,11 +6,10 @@ root.title('Pizza Worth Calc')
 
 
 def calculation():
-    b = 2
     d = pizza_D_p1.get()
     p = pizza_price_p1.get()
-    area = round((float(d)/2)*(float(d)/2)*3.14,2)
-    worth = round(area/(float(p)),2)
+    area = round((float(d)/2)*(float(d)/2)*3.14, 2)
+    worth = round(area/(float(p)), 2)
     pizza_area_p1.config(state='normal')
     pizza_worth_p1.config(state='normal')
     pizza_area_p1.delete("1.0", "end")
@@ -26,8 +25,8 @@ def calculation():
 
     d2 = pizza_D_p2.get()
     p2 = pizza_price_p2.get()
-    area2 = round((float(d2)/2)*(float(d2)/2)*3.14,2)
-    worth2 = round(area2/(float(p2)),2)
+    area2 = round((float(d2)/2)*(float(d2)/2)*3.14, 2)
+    worth2 = round(area2/(float(p2)), 2)
     pizza_area_p2.config(state='normal')
     pizza_worth_p2.config(state='normal')
     pizza_area_p2.delete("1.0", "end")
@@ -60,6 +59,7 @@ def calculation():
         ratio = round((1 - (worth / worth2)) * 100)
         calculation_result['text'] = 'Pizza 2 has better worth ratio by ' + str(ratio) + '%'
     frame_results.pack()
+
 
 # frames
 frame_D = tk.Frame(root)
@@ -99,6 +99,8 @@ label_SPACE2 = tk.Label(root, text=" ", pady=pad_y1)
 label_SPACE3 = tk.Label(root, text=" ", pady=pad_y1)
 label_space1 = tk.Label(root, text=" ")
 label_space2 = tk.Label(root, text=" ")
+
+root.bind("<Return>", lambda e:calculation())
 
 # pack
 label_SPACE1.pack()
