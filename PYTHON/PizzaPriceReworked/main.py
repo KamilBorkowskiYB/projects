@@ -6,6 +6,7 @@ root.title('Pizza Worth Calc')
 
 
 def calculation():
+    b = 2
     d = pizza_D_p1.get()
     p = pizza_price_p1.get()
     area = round((float(d)/2)*(float(d)/2)*3.14,2)
@@ -47,6 +48,8 @@ def calculation():
         pizza_worth_p2.configure(bg='white')
         pizza_worth_p1.config(state='disabled')
         pizza_worth_p2.config(state='disabled')
+        ratio = round((1-(worth2/worth))*100)
+        calculation_result['text'] = 'Pizza 1 has better worth ratio by ' + str(ratio) + '%'
     elif worth2 > worth:
         pizza_worth_p1.config(state='normal')
         pizza_worth_p1.configure(bg='white')
@@ -54,13 +57,17 @@ def calculation():
         pizza_worth_p2.configure(bg='green')
         pizza_worth_p1.config(state='disabled')
         pizza_worth_p2.config(state='disabled')
-
+        ratio = round((1 - (worth / worth2)) * 100)
+        calculation_result['text'] = 'Pizza 2 has better worth ratio by ' + str(ratio) + '%'
+    frame_results.pack()
 
 # frames
 frame_D = tk.Frame(root)
 frame_P = tk.Frame(root)
 frame_A = tk.Frame(root)
 frame_W = tk.Frame(root)
+frame_results = tk.Frame(root)
+
 
 # widgets
 label_d = tk.Label(root, text="Diameter of pizza", font=("Arial", 14))
@@ -84,6 +91,7 @@ label_worth_p1 = tk.Label(frame_W, text="1 pizza", font=("Arial", 14))
 label_worth_p2 = tk.Label(frame_W, text="2 pizza", font=("Arial", 14))
 pizza_worth_p1 = tk.Text(frame_W, height=1, width=10, state='disabled', font=("Arial", 24), pady=10, padx=10)
 pizza_worth_p2 = tk.Text(frame_W, height=1, width=10, state='disabled', font=("Arial", 24), pady=10, padx=10)
+calculation_result = tk.Label(frame_results, text="Pizza # has better worth ratio by #", font=("Arial", 14), pady=50)
 
 pad_y1 = 10
 label_SPACE1 = tk.Label(root, text=" ", pady=pad_y1)
@@ -123,4 +131,6 @@ label_worth_p1.grid(row=0, column=0)
 label_worth_p2.grid(row=0, column=1)
 pizza_worth_p1.grid(row=1, column=0)
 pizza_worth_p2.grid(row=1, column=1)
+frame_results.pack_forget()
+calculation_result.pack()
 root.mainloop()
