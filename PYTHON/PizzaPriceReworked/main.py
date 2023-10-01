@@ -8,8 +8,8 @@ root.title('Pizza Worth Calc')
 def calculation():
     d = pizza_D_p1.get()
     p = pizza_price_p1.get()
-    area = (float(d)/2)*(float(d)/2)*3.14
-    worth = area/(float(p))
+    area = round((float(d)/2)*(float(d)/2)*3.14,2)
+    worth = round(area/(float(p)),2)
     pizza_area_p1.config(state='normal')
     pizza_worth_p1.config(state='normal')
     pizza_area_p1.delete("1.0", "end")
@@ -25,8 +25,8 @@ def calculation():
 
     d2 = pizza_D_p2.get()
     p2 = pizza_price_p2.get()
-    area2 = (float(d2)/2)*(float(d2)/2)*3.14
-    worth2 = area2/(float(p2))
+    area2 = round((float(d2)/2)*(float(d2)/2)*3.14,2)
+    worth2 = round(area2/(float(p2)),2)
     pizza_area_p2.config(state='normal')
     pizza_worth_p2.config(state='normal')
     pizza_area_p2.delete("1.0", "end")
@@ -39,6 +39,21 @@ def calculation():
     pizza_area_p2.tag_add("space", "1.0", "end")
     pizza_worth_p2.tag_configure("space", justify='center')
     pizza_worth_p2.tag_add("space", "1.0", "end")
+
+    if worth > worth2:
+        pizza_worth_p1.config(state='normal')
+        pizza_worth_p1.configure(bg='green')
+        pizza_worth_p2.config(state='normal')
+        pizza_worth_p2.configure(bg='white')
+        pizza_worth_p1.config(state='disabled')
+        pizza_worth_p2.config(state='disabled')
+    elif worth2 > worth:
+        pizza_worth_p1.config(state='normal')
+        pizza_worth_p1.configure(bg='white')
+        pizza_worth_p2.config(state='normal')
+        pizza_worth_p2.configure(bg='green')
+        pizza_worth_p1.config(state='disabled')
+        pizza_worth_p2.config(state='disabled')
 
 
 # frames
