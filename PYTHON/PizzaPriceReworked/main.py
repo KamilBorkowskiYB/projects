@@ -1,7 +1,7 @@
 import tkinter as tk
 
 root = tk.Tk()
-root.geometry('560x720')
+root.geometry('560x840')
 root.title('Pizza Worth Calc')
 
 
@@ -59,6 +59,7 @@ def calculation():
         ratio = round((1 - (worth / worth2)) * 100)
         calculation_result['text'] = 'Pizza 2 has better worth ratio by ' + str(ratio) + '%'
     frame_results.pack()
+    print(root.winfo_height())
 
 
 # frames
@@ -70,28 +71,28 @@ frame_results = tk.Frame(root)
 
 
 # widgets
-label_d = tk.Label(root, text="Diameter of pizza", font=("Arial", 14))
+label_d = tk.Label(root, text="Diameter of pizza", font=("Arial", 24))
 label_d_p1 = tk.Label(frame_D, text="1 pizza", font=("Arial", 14))
 label_d_p2 = tk.Label(frame_D, text="2 pizza", font=("Arial", 14))
 pizza_D_p1 = tk.Entry(frame_D, justify='center', width=10, font=("Arial", 24))
 pizza_D_p2 = tk.Entry(frame_D, justify='center', width=10, font=("Arial", 24))
-label_p = tk.Label(root, text="Pizza's price", font=("Arial", 14))
+label_p = tk.Label(root, text="Pizza's price", font=("Arial", 24))
 label_p_p1 = tk.Label(frame_P, text="1 pizza", font=("Arial", 14))
 label_p_p2 = tk.Label(frame_P, text="2 pizza", font=("Arial", 14))
 pizza_price_p1 = tk.Entry(frame_P, justify='center', width=10, font=("Arial", 24))
 pizza_price_p2 = tk.Entry(frame_P, justify='center', width=10, font=("Arial", 24))
 btn_calc = tk.Button(root, text="Calculate", command=lambda: calculation(), font=("Arial", 24), padx=50)
-label_area = tk.Label(root, text="Pizza's area", font=("Arial", 14))
+label_area = tk.Label(root, text="Pizza's area", font=("Arial", 24))
 label_area_p1 = tk.Label(frame_A, text="1 pizza", font=("Arial", 14))
 label_area_p2 = tk.Label(frame_A, text="2 pizza", font=("Arial", 14))
 pizza_area_p1 = tk.Text(frame_A, height=1, width=10, state='disabled', font=("Arial", 24), pady=10, padx=10)
 pizza_area_p2 = tk.Text(frame_A, height=1, width=10, state='disabled', font=("Arial", 24), pady=10, padx=10)
-label_worth = tk.Label(root, text="Pizza's worth", font=("Arial", 14))
+label_worth = tk.Label(root, text="Pizza's worth", font=("Arial", 24))
 label_worth_p1 = tk.Label(frame_W, text="1 pizza", font=("Arial", 14))
 label_worth_p2 = tk.Label(frame_W, text="2 pizza", font=("Arial", 14))
 pizza_worth_p1 = tk.Text(frame_W, height=1, width=10, state='disabled', font=("Arial", 24), pady=10, padx=10)
 pizza_worth_p2 = tk.Text(frame_W, height=1, width=10, state='disabled', font=("Arial", 24), pady=10, padx=10)
-calculation_result = tk.Label(frame_results, text="Pizza # has better worth ratio by #", font=("Arial", 14), pady=50)
+calculation_result = tk.Label(frame_results, text="Pizza # has better worth ratio by #", font=("Arial", 24), pady=50)
 
 pad_y1 = 10
 label_SPACE1 = tk.Label(root, text=" ", pady=pad_y1)
@@ -100,7 +101,7 @@ label_SPACE3 = tk.Label(root, text=" ", pady=pad_y1)
 label_space1 = tk.Label(root, text=" ")
 label_space2 = tk.Label(root, text=" ")
 
-root.bind("<Return>", lambda e:calculation())
+root.bind("<Return>", lambda e: calculation())
 
 # pack
 label_SPACE1.pack()
