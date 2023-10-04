@@ -5,10 +5,24 @@ win = ttk.Window()
 win.geometry('900x900')
 win.title('Math Quiz')
 
+question_number = 2
+good_answers = 0
+
 
 def start_quiz():
     frame_start.pack_forget()
     frame_game.pack(expand=True, fill='both')
+
+
+def submit_answer():
+    global question_number
+    if question_number < 11:
+        question_label['text'] = 'Question ' + str(question_number)
+        question_number += 1
+
+
+def get_equation():
+    pass
 
 
 # frames
@@ -28,7 +42,7 @@ btn_play = ttk.Button(frame_start, text='Play', command=lambda: start_quiz(), st
 question_label = ttk.Label(frame_game, text='Question 1')
 equation_label = ttk.Label(frame_game, text='Equation 1')
 answer_entry = ttk.Entry(frame_game)
-next_question = ttk.Button(frame_game, text='Next Question')
+next_question = ttk.Button(frame_game, text='Next Question', command=lambda: submit_answer())
 
 # menu grid
 frame_start.columnconfigure(0, weight=1)
