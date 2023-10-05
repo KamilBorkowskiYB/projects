@@ -8,49 +8,74 @@ win.title('Math Quiz')
 
 question_number = 2
 good_answers = 0
+answer = 0
 
 
 def start_quiz():
     frame_start.pack_forget()
     frame_game.pack(expand=True, fill='both')
+    get_equation()
 
 
 def submit_answer():
     global question_number
-    if question_number < 11:
+    global good_answers
+    if question_number <= 10:
         question_label['text'] = 'Question ' + str(question_number)
         question_number += 1
-    get_equation()
+        check_equation()
+        get_equation()
+    else:
+        print('--------')
+        print(good_answers)
+
 
 def get_equation():
     # 1 = +     2 = -   3 = *   4 = /
-    operation = random.randint(1,4)
+    global answer
+    operation = random.randint(1, 4)
     if operation == 1:
         x = random.randint(1, 256)
         y = random.randint(0, 256)
-        w = x+y
+        answer = x+y
         operation_symbol = '+'
-    if operation == 2:
+    elif operation == 2:
         x = random.randint(1, 256)
         y = random.randint(0, 256)
-        w = x-y
+        answer = x-y
         operation_symbol = '-'
-    if operation == 3:
+    elif operation == 3:
         x = random.randint(1, 16)
         y = random.randint(0, 16)
-        w = x*y
+        answer = x*y
         operation_symbol = '*'
-    if operation == 4:
+    else:
         x = random.randint(12, 150)
+        while not prime(x):
+            x = random.randint(12, 150)
         y = random.randint(2, 12)
         while x % y != 0:
             y = random.randint(2, 12)
-        w = x/y
+            print(y)
+        answer = x/y
         operation_symbol = '/'
     equation_label['text'] = str(x) + operation_symbol + str(y)
-    print(operation)
-    print(x)
-    print(y)
+
+
+def prime(x):
+    for i in range(2, 12):
+        if x % i == 0:
+            return True
+    return False
+
+
+def check_equation():
+    global answer
+    global good_answers
+    if len(answer_entry.get()) == 0:
+        pass
+    elif int(answer_entry.get()) == answer:
+        good_answers += 1
 
 
 # frames
@@ -75,15 +100,15 @@ next_question = ttk.Button(frame_game, text='Next Question', command=lambda: sub
 # menu grid
 frame_start.columnconfigure(0, weight=1)
 frame_start.rowconfigure([0,1], weight=1)
-frame_start.pack(expand=True,fill='both')
-menu_line1.grid(row = 0, column = 0, sticky='nswe')
-btn_play.grid(row = 1, column = 0, sticky='NSEW')
+frame_start.pack(expand=True, fill='both')
+menu_line1.grid(row=0, column=0, sticky='nswe')
+btn_play.grid(row=1, column=0, sticky='NSEW')
 
 # game grid
 frame_game.pack(expand=True)
-question_label.pack(pady=(50,0))
+question_label.pack(pady=(50, 0))
 equation_label.pack()
-next_question.pack(side='bottom',pady=(0,90))
+next_question.pack(side='bottom', pady=(0, 90))
 answer_entry.pack(side='bottom')
 frame_game.pack_forget()
 win.mainloop()
