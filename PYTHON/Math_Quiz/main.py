@@ -14,6 +14,7 @@ answer = 0
 def start_quiz():
     frame_start.pack_forget()
     frame_game.pack(expand=True, fill='both')
+    answer_entry.focus()
     get_equation()
 
 
@@ -28,6 +29,8 @@ def submit_answer():
     else:
         print('--------')
         print(good_answers)
+    answer_entry.delete(0, 'end')
+    answer_entry.focus()
 
 
 def get_equation():
@@ -56,7 +59,6 @@ def get_equation():
         y = random.randint(2, 12)
         while x % y != 0:
             y = random.randint(2, 12)
-            print(y)
         answer = x/y
         operation_symbol = '/'
     equation_label['text'] = str(x) + operation_symbol + str(y)
@@ -92,23 +94,31 @@ menu_line1 = ttk.Label(frame_start, text='You will answer 10 math\nquestion in a
 btn_play = ttk.Button(frame_start, text='Play', command=lambda: start_quiz(), style='my.TButton')
 
 # game widgets
-question_label = ttk.Label(frame_game, text='Question 1')
-equation_label = ttk.Label(frame_game, text='Equation 1')
-answer_entry = ttk.Entry(frame_game)
+question_label = ttk.Label(frame_game, text='Question 1', anchor="center")
+equation_label = ttk.Label(frame_game, text='Equation 1', anchor="center", font=('Helvetica', 100))
+answer_entry = ttk.Entry(frame_game, justify="center", font=('Helvetica', 48))
 next_question = ttk.Button(frame_game, text='Next Question', command=lambda: submit_answer())
 
 # menu grid
 frame_start.columnconfigure(0, weight=1)
 frame_start.rowconfigure([0,1], weight=1)
 frame_start.pack(expand=True, fill='both')
-menu_line1.grid(row=0, column=0, sticky='nswe')
-btn_play.grid(row=1, column=0, sticky='NSEW')
+menu_line1.grid(row=0, column=0, sticky='NSEW')
+btn_play.grid(row=1, column=0, sticky='NSEW', padx=100, pady=(0, 100))
 
 # game grid
-frame_game.pack(expand=True)
-question_label.pack(pady=(50, 0))
-equation_label.pack()
-next_question.pack(side='bottom', pady=(0, 90))
-answer_entry.pack(side='bottom')
+frame_game.columnconfigure(0, weight=1)
+frame_game.rowconfigure([0,1,2,3], weight=1)
+frame_game.pack()
+question_label.grid(row=0, column=0, sticky='NSEW', pady=(50, 0))
+equation_label.grid(row=1, column=0, sticky='NSEW', pady=(100, 0))
+answer_entry.grid(row=2, column=0, sticky='NSEW', pady=100, padx=150)
+next_question.grid(row=3, column=0, sticky='NSEW', pady=(0, 90), padx=150)
 frame_game.pack_forget()
+
+# binds
+# frame_start.bind("<Return>", lambda e: start_quiz()) //doesn't work :(
+frame_game.bind("<Return>", lambda e: submit_answer())
+answer_entry.bind("<Return>", lambda e: submit_answer())
+
 win.mainloop()
