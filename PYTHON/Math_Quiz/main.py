@@ -1,5 +1,6 @@
 import tkinter as tk
 import ttkbootstrap as ttk
+import random
 
 win = ttk.Window()
 win.geometry('900x900')
@@ -19,10 +20,37 @@ def submit_answer():
     if question_number < 11:
         question_label['text'] = 'Question ' + str(question_number)
         question_number += 1
-
+    get_equation()
 
 def get_equation():
-    pass
+    # 1 = +     2 = -   3 = *   4 = /
+    operation = random.randint(1,4)
+    if operation == 1:
+        x = random.randint(1, 256)
+        y = random.randint(0, 256)
+        w = x+y
+        operation_symbol = '+'
+    if operation == 2:
+        x = random.randint(1, 256)
+        y = random.randint(0, 256)
+        w = x-y
+        operation_symbol = '-'
+    if operation == 3:
+        x = random.randint(1, 16)
+        y = random.randint(0, 16)
+        w = x*y
+        operation_symbol = '*'
+    if operation == 4:
+        x = random.randint(12, 150)
+        y = random.randint(2, 12)
+        while x % y != 0:
+            y = random.randint(2, 12)
+        w = x/y
+        operation_symbol = '/'
+    equation_label['text'] = str(x) + operation_symbol + str(y)
+    print(operation)
+    print(x)
+    print(y)
 
 
 # frames
