@@ -117,7 +117,7 @@ next_question.grid(row=3, column=0, sticky='NSEW', pady=(0, 90), padx=150)
 frame_game.pack_forget()
 
 # binds
-# frame_start.bind("<Return>", lambda e: start_quiz()) //doesn't work :(
+win.bind("<Return>", lambda e: start_quiz())
 frame_game.bind("<Return>", lambda e: submit_answer())
 answer_entry.bind("<Return>", lambda e: submit_answer())
 
