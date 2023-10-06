@@ -3,7 +3,7 @@ import ttkbootstrap as ttk
 import random
 
 win = ttk.Window()
-win.geometry('900x900')
+win.geometry('1285x900')
 win.title('Math Quiz')
 
 question_number = 2
@@ -13,7 +13,8 @@ answer = 0
 
 def start_quiz():
     frame_start.pack_forget()
-    frame_game.pack(expand=True, fill='both')
+    frame_main.place(x=0, y=0, relwidth=0.7, relheight=1)
+    frame_timer.place(relx=0.7, y=0, relwidth=0.3, relheight=1)
     answer_entry.focus()
     get_equation()
 
@@ -82,7 +83,9 @@ def check_equation():
 
 # frames
 frame_start = ttk.Frame(win)
-frame_game = ttk.Frame(win)
+frame_main = ttk.Frame(win)
+frame_game = ttk.Frame(frame_main)
+frame_timer = ttk.Frame(win)
 
 # styles
 style = ttk.Style()
@@ -109,12 +112,19 @@ btn_play.grid(row=1, column=0, sticky='NSEW', padx=100, pady=(0, 100))
 # game grid
 frame_game.columnconfigure(0, weight=1)
 frame_game.rowconfigure([0,1,2,3], weight=1)
-frame_game.pack()
+frame_game.pack(expand=True, fill='both')
 question_label.grid(row=0, column=0, sticky='NSEW', pady=(50, 0))
 equation_label.grid(row=1, column=0, sticky='NSEW', pady=(100, 0))
 answer_entry.grid(row=2, column=0, sticky='NSEW', pady=100, padx=150)
 next_question.grid(row=3, column=0, sticky='NSEW', pady=(0, 90), padx=150)
-frame_game.pack_forget()
+
+frame_main.place(x=0,y=0, relwidth=0.3,relheight=1)
+frame_main.place_forget()
+
+# timer grid
+test_label = ttk.Label(frame_timer,background='red').pack(expand= True, fill = 'both')
+frame_timer.place()
+frame_timer.place_forget()
 
 # binds
 win.bind("<Return>", lambda e: start_quiz())
