@@ -102,6 +102,9 @@ equation_label = ttk.Label(frame_game, text='Equation 1', anchor="center", font=
 answer_entry = ttk.Entry(frame_game, justify="center", font=('Helvetica', 48))
 next_question = ttk.Button(frame_game, text='Next Question', command=lambda: submit_answer())
 
+# timer widgets
+timer_label = ttk.Label(frame_timer, text='Time left', anchor='center')
+
 # menu grid
 frame_start.columnconfigure(0, weight=1)
 frame_start.rowconfigure([0,1], weight=1)
@@ -122,8 +125,9 @@ frame_main.place(x=0,y=0, relwidth=0.3,relheight=1)
 frame_main.place_forget()
 
 # timer grid
-test_label = ttk.Label(frame_timer,background='red').pack(expand= True, fill = 'both')
+#test_label = ttk.Label(frame_timer,background='red').pack(expand= True, fill = 'both')
 frame_timer.place()
+timer_label.pack(expand= True, fill = 'both')
 frame_timer.place_forget()
 
 # binds
