@@ -1,6 +1,8 @@
 import tkinter as tk
 import ttkbootstrap as ttk
 import random
+import time
+import threading as th
 
 win = ttk.Window()
 win.geometry('1285x900')
@@ -9,14 +11,17 @@ win.title('Math Quiz')
 question_number = 2
 good_answers = 0
 answer = 0
+quiz_time = 70
 
 
 def start_quiz():
     frame_start.pack_forget()
     frame_main.place(x=0, y=0, relwidth=0.7, relheight=1)
     frame_timer.place(relx=0.7, y=0, relwidth=0.3, relheight=1)
+    timer_thread.start()
     answer_entry.focus()
     get_equation()
+    win.unbind('<Return>')
 
 
 def submit_answer():
@@ -81,6 +86,18 @@ def check_equation():
         good_answers += 1
 
 
+def count_down():
+    global quiz_time
+    for x in range(quiz_time, -1, -1):
+        seconds = x % 60
+        minutes = int(x/60) % 60
+        timer_label['text']=f"{minutes:02}:{seconds:02}"
+        time.sleep(1)
+
+
+# threads
+timer_thread = th.Thread(target=count_down)
+
 # frames
 frame_start = ttk.Frame(win)
 frame_main = ttk.Frame(win)
@@ -125,7 +142,6 @@ frame_main.place(x=0,y=0, relwidth=0.3,relheight=1)
 frame_main.place_forget()
 
 # timer grid
-#test_label = ttk.Label(frame_timer,background='red').pack(expand= True, fill = 'both')
 frame_timer.place()
 timer_label.pack(expand= True, fill = 'both')
 frame_timer.place_forget()
