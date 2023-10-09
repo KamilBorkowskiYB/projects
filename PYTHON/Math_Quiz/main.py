@@ -5,7 +5,7 @@ import time
 import threading as th
 
 win = ttk.Window()
-win.geometry('1285x900')
+win.geometry('900x900')
 win.title('Math Quiz')
 
 question_number = 2
@@ -16,8 +16,8 @@ quiz_time = 70
 
 def start_quiz():
     frame_start.pack_forget()
-    frame_game.place(x=0, y=0, relwidth=0.7, relheight=1)
-    frame_timer.place(relx=0.7, y=0, relwidth=0.3, relheight=1)
+    frame_game.place(x=0, y=0, relwidth=0.75, relheight=1)
+    frame_timer.place(relx=0.75, y=0, relwidth=0.25, relheight=1)
     timer_thread.start()
     answer_entry.focus()
     get_equation()
@@ -132,10 +132,10 @@ btn_play.grid(row=1, column=0, sticky='NSEW', padx=100, pady=(0, 100))
 frame_game.columnconfigure(0, weight=1)
 frame_game.rowconfigure([0,1,2,3], weight=1)
 frame_game.place(x=0,y=0, relwidth=0.3,relheight=1)
-question_label.grid(row=0, column=0, sticky='NSEW', pady=(50, 0), padx=(100, 50))
-equation_label.grid(row=1, column=0, sticky='NSEW', pady=(100, 0), padx=(100, 50))
-answer_entry.grid(row=2, column=0, sticky='NSEW', pady=100, padx=(100, 50))
-next_question.grid(row=3, column=0, sticky='NSEW', pady=(0, 90), padx=(100, 50))
+question_label.grid(row=0, column=0, sticky='NSEW', pady=(50, 0), padx=(50, 50))
+equation_label.grid(row=1, column=0, sticky='NSEW', pady=(0, 0), padx=(50, 50))
+answer_entry.grid(row=2, column=0, sticky='NSEW', pady=50, padx=(50, 50))
+next_question.grid(row=3, column=0, sticky='NSEW', pady=(0, 50), padx=(50, 50))
 frame_game.place_forget()
 
 # timer grid
