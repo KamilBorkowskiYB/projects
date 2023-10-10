@@ -88,11 +88,17 @@ def check_equation():
 
 def count_down():
     global quiz_time
+    progress_bar_top['value'] = quiz_time
     for x in range(quiz_time, -1, -1):
         seconds = x % 60
         minutes = int(x/60) % 60
         timer_label['text']=f"{minutes:02}:{seconds:02}"
+        progress()
         time.sleep(1)
+
+
+def progress():
+    progress_bar_top['value'] -= 1
 
 
 # threads
@@ -120,6 +126,8 @@ next_question = ttk.Button(frame_game, text='Next Question', command=lambda: sub
 
 # timer widgets
 timer_label = ttk.Label(frame_timer, text='Time left', anchor='center')
+timer_help_label = ttk.Label(frame_timer, background='red')
+progress_bar_top = ttk.Progressbar(frame_timer, orient='vertical', mode='determinate', style='success', maximum=quiz_time)
 
 # menu grid
 frame_start.columnconfigure(0, weight=1)
@@ -139,8 +147,14 @@ next_question.grid(row=3, column=0, sticky='NSEW', pady=(0, 50), padx=(50, 50))
 frame_game.place_forget()
 
 # timer grid
+frame_timer.columnconfigure(0, weight=1)
+frame_timer.rowconfigure([0,1], weight=1)
 frame_timer.place()
-timer_label.pack(expand= True, fill = 'both')
+#timer_label.pack(expand= True, fill = 'both')
+#timer_help_label.grid(row =0, column=0, sticky='NSEW')
+progress_bar_top.grid(row =0, column=0, sticky='NSEW')
+progress_bar_top['value'] = 100
+timer_label.grid(row =1, column=0, sticky='NSEW')
 frame_timer.place_forget()
 
 # binds
