@@ -125,7 +125,7 @@ answer_entry = ttk.Entry(frame_game, justify="center", font=('Helvetica', 48))
 next_question = ttk.Button(frame_game, text='Next Question', command=lambda: submit_answer())
 
 # timer widgets
-timer_label = ttk.Label(frame_timer, text='Time left', anchor='center')
+timer_label = ttk.Label(frame_timer, text='Time left', anchor='center', style='inverse-success')
 timer_help_label = ttk.Label(frame_timer, background='red')
 progress_bar_top = ttk.Progressbar(frame_timer, orient='vertical', mode='determinate', style='success', maximum=quiz_time)
 
@@ -140,21 +140,19 @@ btn_play.grid(row=1, column=0, sticky='NSEW', padx=100, pady=(0, 100))
 frame_game.columnconfigure(0, weight=1)
 frame_game.rowconfigure([0,1,2,3], weight=1)
 frame_game.place(x=0,y=0, relwidth=0.3,relheight=1)
-question_label.grid(row=0, column=0, sticky='NSEW', pady=(50, 0), padx=(50, 50))
-equation_label.grid(row=1, column=0, sticky='NSEW', pady=(0, 0), padx=(50, 50))
-answer_entry.grid(row=2, column=0, sticky='NSEW', pady=50, padx=(50, 50))
-next_question.grid(row=3, column=0, sticky='NSEW', pady=(0, 50), padx=(50, 50))
+question_label.grid(row=0, column=0, sticky='NSEW', pady=(20, 0), padx=20)
+equation_label.grid(row=1, column=0, sticky='NSEW', padx=20)
+answer_entry.grid(row=2, column=0, sticky='NSEW', pady=50, padx=20)
+next_question.grid(row=3, column=0, sticky='NSEW', pady=(0, 20), padx=20)
 frame_game.place_forget()
 
 # timer grid
 frame_timer.columnconfigure(0, weight=1)
 frame_timer.rowconfigure([0,1], weight=1)
 frame_timer.place()
-#timer_label.pack(expand= True, fill = 'both')
-#timer_help_label.grid(row =0, column=0, sticky='NSEW')
-progress_bar_top.grid(row =0, column=0, sticky='NSEW')
-progress_bar_top['value'] = 100
-timer_label.grid(row =1, column=0, sticky='NSEW')
+progress_bar_top.grid(row =0,rowspan=2, column=0, sticky='NSEW', pady=20, padx=(0, 20))
+timer_label.place(relx=0.45, rely=0.5, anchor='center')
+timer_label.lift()
 frame_timer.place_forget()
 
 # binds
