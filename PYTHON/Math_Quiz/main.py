@@ -8,7 +8,7 @@ win = ttk.Window()
 win.geometry('900x900')
 win.title('Math Quiz')
 
-question_number = 2
+question_number = 1
 good_answers = 0
 answer = 0
 quiz_time = 70
@@ -27,12 +27,16 @@ def start_quiz():
 def submit_answer():
     global question_number
     global good_answers
-    if question_number <= 10:
-        question_label['text'] = 'Question ' + str(question_number)
+    if question_number == 9:
+        next_question['text'] = 'End Quiz'
+    if question_number < 10:
         question_number += 1
+        question_label['text'] = 'Question ' + str(question_number)
         check_equation()
         get_equation()
     else:
+        check_equation()
+        question_number += 1
         print('--------')
         print(good_answers)
     answer_entry.delete(0, 'end')
@@ -81,9 +85,10 @@ def check_equation():
     global answer
     global good_answers
     if len(answer_entry.get()) == 0:
-        pass
+        print('wrong')
     elif int(answer_entry.get()) == answer:
         good_answers += 1
+        print('check')
 
 
 def count_down():
