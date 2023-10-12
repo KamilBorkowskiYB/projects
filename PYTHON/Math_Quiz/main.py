@@ -37,6 +37,7 @@ def submit_answer():
     else:
         check_equation()
         question_number += 1
+        end()
         print('--------')
         print(good_answers)
     answer_entry.delete(0, 'end')
@@ -86,6 +87,8 @@ def check_equation():
     global good_answers
     if len(answer_entry.get()) == 0:
         print('wrong')
+    elif int(answer_entry.get()) != answer:
+        print('wrong')
     elif int(answer_entry.get()) == answer:
         good_answers += 1
         print('check')
@@ -106,6 +109,12 @@ def progress():
     progress_bar_top['value'] -= 1
 
 
+def end():
+    frame_game.pack_forget()
+    frame_timer.pack_forget()
+    frame_end.pack(expand=True, fill='both')
+
+
 # threads
 timer_thread = th.Thread(target=count_down)
 
@@ -113,6 +122,7 @@ timer_thread = th.Thread(target=count_down)
 frame_start = ttk.Frame(win)
 frame_game = ttk.Frame(win)
 frame_timer = ttk.Frame(win)
+frame_end = ttk.Frame(win)
 
 # styles
 style = ttk.Style()
@@ -133,6 +143,9 @@ next_question = ttk.Button(frame_game, text='Next Question', command=lambda: sub
 timer_label = ttk.Label(frame_timer, text='Time left', anchor='center', style='inverse-success')
 timer_help_label = ttk.Label(frame_timer, background='red')
 progress_bar_top = ttk.Progressbar(frame_timer, orient='vertical', mode='determinate', style='success', maximum=quiz_time)
+
+# end panel widgets
+test_label = ttk.Label(frame_end, background='red')
 
 # menu grid
 frame_start.columnconfigure(0, weight=1)
@@ -159,6 +172,13 @@ progress_bar_top.grid(row =0,rowspan=2, column=0, sticky='NSEW', pady=20, padx=(
 timer_label.place(relx=0.45, rely=0.5, anchor='center')
 timer_label.lift()
 frame_timer.place_forget()
+
+# end panel grid
+frame_end.columnconfigure(0, weight=1)
+frame_end.rowconfigure(0, weight=1)
+frame_end.pack()
+test_label.grid(row=0, column=0, sticky='NSEW')
+frame_end.pack_forget()
 
 # binds
 win.bind("<Return>", lambda e: start_quiz())
