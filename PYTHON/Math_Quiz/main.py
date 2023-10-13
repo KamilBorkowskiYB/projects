@@ -4,7 +4,7 @@ import random
 import time
 import threading as th
 
-win = ttk.Window()
+win = ttk.Window(themename='solar')
 win.geometry('900x900')
 win.title('Math Quiz')
 
@@ -103,6 +103,7 @@ def count_down():
         timer_label['text']=f"{minutes:02}:{seconds:02}"
         progress()
         time.sleep(1)
+    end()
 
 
 def progress():
