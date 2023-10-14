@@ -109,12 +109,13 @@ def progress():
 
 
 def end():
+    # progress_bar_top.stop()
     print('--------')
     print(good_answers)
     frame_game.pack_forget()
     frame_timer.pack_forget()
     frame_end.pack(expand=True, fill='both')
-    result_label['text'] = 'Good answers: '+str(good_answers)+'/10'
+    result_label['text'] = 'Good answers:\n'+str(good_answers)+'/10'
 
 
 # threads
@@ -129,7 +130,7 @@ frame_end = ttk.Frame(win)
 # styles
 style = ttk.Style()
 style.configure('.', font=('Helvetica', 48))
-style.configure('my.TButton', font=('Helvetica', 150))
+style.configure('my.TButton', font=('Helvetica', 150), anchor='center', justify='center')
 
 # start menu widgets
 menu_line1 = ttk.Label(frame_start, text='You will answer 10 math\nquestion in a limited time.\nAre you ready?', anchor="center", justify="center")
@@ -147,7 +148,8 @@ timer_help_label = ttk.Label(frame_timer, background='red')
 progress_bar_top = ttk.Progressbar(frame_timer, orient='vertical', mode='determinate', style='success', maximum=quiz_time)
 
 # end panel widgets
-result_label = ttk.Label(frame_end, text='Good answers', anchor='center')
+result_label = ttk.Label(frame_end, text='Good answers', anchor='center', justify='center')
+btn_restart = ttk.Button(frame_end, text='Play\nagain', style='my.TButton')
 
 # menu grid
 frame_start.columnconfigure(0, weight=1)
@@ -177,9 +179,10 @@ frame_timer.place_forget()
 
 # end panel grid
 frame_end.columnconfigure(0, weight=1)
-frame_end.rowconfigure(0, weight=1)
+frame_end.rowconfigure((0,1), weight=1)
 frame_end.pack()
 result_label.grid(row=0, column=0, sticky='NSEW')
+btn_restart.grid(row=1, column=0, sticky='NSEW', padx=100, pady=(0, 100))
 frame_end.pack_forget()
 
 # binds
