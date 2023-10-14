@@ -38,8 +38,6 @@ def submit_answer():
         check_equation()
         question_number += 1
         end()
-        print('--------')
-        print(good_answers)
     answer_entry.delete(0, 'end')
     answer_entry.focus()
 
@@ -111,9 +109,12 @@ def progress():
 
 
 def end():
+    print('--------')
+    print(good_answers)
     frame_game.pack_forget()
     frame_timer.pack_forget()
     frame_end.pack(expand=True, fill='both')
+    result_label['text'] = 'Good answers: '+str(good_answers)+'/10'
 
 
 # threads
@@ -146,7 +147,7 @@ timer_help_label = ttk.Label(frame_timer, background='red')
 progress_bar_top = ttk.Progressbar(frame_timer, orient='vertical', mode='determinate', style='success', maximum=quiz_time)
 
 # end panel widgets
-test_label = ttk.Label(frame_end, background='red')
+result_label = ttk.Label(frame_end, text='Good answers', anchor='center')
 
 # menu grid
 frame_start.columnconfigure(0, weight=1)
@@ -178,7 +179,7 @@ frame_timer.place_forget()
 frame_end.columnconfigure(0, weight=1)
 frame_end.rowconfigure(0, weight=1)
 frame_end.pack()
-test_label.grid(row=0, column=0, sticky='NSEW')
+result_label.grid(row=0, column=0, sticky='NSEW')
 frame_end.pack_forget()
 
 # binds
