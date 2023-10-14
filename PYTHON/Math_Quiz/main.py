@@ -12,13 +12,14 @@ question_number = 1
 good_answers = 0
 answer = 0
 quiz_time = 70
+stop_thread = False
 
 
 def start_quiz():
     frame_start.pack_forget()
     frame_game.place(x=0, y=0, relwidth=0.75, relheight=1)
     frame_timer.place(relx=0.75, y=0, relwidth=0.25, relheight=1)
-    timer_thread.start()
+    new_thread()
     answer_entry.focus()
     get_equation()
     win.unbind('<Return>')
@@ -94,22 +95,26 @@ def check_equation():
 
 def count_down():
     global quiz_time
+    global stop_thread
     progress_bar_top['value'] = quiz_time
     for x in range(quiz_time, -1, -1):
+        if stop_thread:
+            break
         seconds = x % 60
         minutes = int(x/60) % 60
-        timer_label['text']=f"{minutes:02}:{seconds:02}"
+        timer_label['text'] = f"{minutes:02}:{seconds:02}"
         progress()
         time.sleep(1)
     end()
 
 
 def progress():
-    progress_bar_top['value'] -= 1
+    progress_bar_top.step(-1)
 
 
 def end():
-    # progress_bar_top.stop()
+    global stop_thread
+    stop_thread = True
     print('--------')
     print(good_answers)
     frame_game.pack_forget()
@@ -118,8 +123,25 @@ def end():
     result_label['text'] = 'Good answers:\n'+str(good_answers)+'/10'
 
 
-# threads
-timer_thread = th.Thread(target=count_down)
+def restart():
+    frame_end.pack_forget()
+    global stop_thread
+    global quiz_time
+    global question_number
+    global good_answers
+    global answer
+    stop_thread = False
+    question_number = 1
+    good_answers = 0
+    answer = 0
+    start_quiz()
+    question_label['text'] = 'Question 1'
+    next_question['text'] = 'Next Question'
+
+
+def new_thread():
+    return th.Thread(target=count_down, daemon=True).start()
+
 
 # frames
 frame_start = ttk.Frame(win)
@@ -149,7 +171,7 @@ progress_bar_top = ttk.Progressbar(frame_timer, orient='vertical', mode='determi
 
 # end panel widgets
 result_label = ttk.Label(frame_end, text='Good answers', anchor='center', justify='center')
-btn_restart = ttk.Button(frame_end, text='Play\nagain', style='my.TButton')
+btn_restart = ttk.Button(frame_end, text='Play\nagain', style='my.TButton', command=lambda: restart())
 
 # menu grid
 frame_start.columnconfigure(0, weight=1)
