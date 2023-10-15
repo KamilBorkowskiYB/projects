@@ -113,6 +113,7 @@ def progress():
 
 
 def end():
+    answer_entry.unbind("<Return>")
     global stop_thread
     stop_thread = True
     print('--------')
@@ -125,6 +126,7 @@ def end():
 
 def restart():
     frame_end.pack_forget()
+    answer_entry.bind("<Return>", lambda e: submit_answer())
     global stop_thread
     global quiz_time
     global question_number
@@ -153,6 +155,7 @@ frame_end = ttk.Frame(win)
 style = ttk.Style()
 style.configure('.', font=('Helvetica', 48))
 style.configure('my.TButton', font=('Helvetica', 150), anchor='center', justify='center')
+style.configure('end.TButton', font=('Helvetica', 100), anchor='center', justify='center')
 
 # start menu widgets
 menu_line1 = ttk.Label(frame_start, text='You will answer 10 math\nquestion in a limited time.\nAre you ready?', anchor="center", justify="center")
@@ -170,8 +173,8 @@ timer_help_label = ttk.Label(frame_timer, background='red')
 progress_bar_top = ttk.Progressbar(frame_timer, orient='vertical', mode='determinate', style='success', maximum=quiz_time)
 
 # end panel widgets
-result_label = ttk.Label(frame_end, text='Good answers', anchor='center', justify='center')
-btn_restart = ttk.Button(frame_end, text='Play\nagain', style='my.TButton', command=lambda: restart())
+result_label = ttk.Label(frame_end, text='Good answers', anchor='center', justify='center', font=('Helvetica', 80))
+btn_restart = ttk.Button(frame_end, text='Play\nagain', style='end.TButton', command=lambda: restart())
 
 # menu grid
 frame_start.columnconfigure(0, weight=1)
