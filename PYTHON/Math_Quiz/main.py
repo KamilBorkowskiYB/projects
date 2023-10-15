@@ -23,6 +23,7 @@ def start_quiz():
     answer_entry.focus()
     get_equation()
     win.unbind('<Return>')
+    answer_entry.bind("<Return>", lambda e: submit_answer())
 
 
 def submit_answer():
@@ -122,6 +123,8 @@ def end():
     frame_timer.pack_forget()
     frame_end.pack(expand=True, fill='both')
     result_label['text'] = 'Good answers:\n'+str(good_answers)+'/10'
+    btn_restart.focus()
+    btn_restart.bind("<Return>", lambda e: restart())
 
 
 def restart():
@@ -169,7 +172,6 @@ next_question = ttk.Button(frame_game, text='Next Question', command=lambda: sub
 
 # timer widgets
 timer_label = ttk.Label(frame_timer, text='Time left', anchor='center', style='inverse-success')
-timer_help_label = ttk.Label(frame_timer, background='red')
 progress_bar_top = ttk.Progressbar(frame_timer, orient='vertical', mode='determinate', style='success', maximum=quiz_time)
 
 # end panel widgets
@@ -212,7 +214,5 @@ frame_end.pack_forget()
 
 # binds
 win.bind("<Return>", lambda e: start_quiz())
-frame_game.bind("<Return>", lambda e: submit_answer())
-answer_entry.bind("<Return>", lambda e: submit_answer())
 
 win.mainloop()
