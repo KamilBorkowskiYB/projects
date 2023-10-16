@@ -169,7 +169,7 @@ answer_entry = ttk.Entry(frame_game, justify="center", font=('Helvetica', 48))
 next_question = ttk.Button(frame_game, text='Next Question', command=lambda: submit_answer())
 
 # timer widgets
-timer_label = ttk.Label(frame_timer, text='Time left', anchor='center', style='inverse-success')
+timer_label = ttk.Label(frame_timer, text='Time left', anchor='center', style='inverse-success', border=0.5)
 progress_bar_top = ttk.Progressbar(frame_timer, orient='vertical', mode='determinate', style='success', maximum=quiz_time)
 
 # end panel widgets
