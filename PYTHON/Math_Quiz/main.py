@@ -104,13 +104,9 @@ def count_down():
         seconds = x % 60
         minutes = int(x/60) % 60
         timer_label['text'] = f"{minutes:02}:{seconds:02}"
-        progress()
+        progress_bar_top['value'] = x
         time.sleep(1)
     end()
-
-
-def progress():
-    progress_bar_top.step(-1)
 
 
 def end():
@@ -129,12 +125,14 @@ def end():
 
 def restart():
     frame_end.pack_forget()
+    btn_restart.unbind("<Return>")
     answer_entry.bind("<Return>", lambda e: submit_answer())
     global stop_thread
     global quiz_time
     global question_number
     global good_answers
     global answer
+    progress_bar_top['value'] = quiz_time
     stop_thread = False
     question_number = 1
     good_answers = 0
