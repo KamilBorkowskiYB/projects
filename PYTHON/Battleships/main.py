@@ -3,17 +3,54 @@ def show(x):
        print(i)
 
 
+def seek_target():
+    pass
+
+
+def calculate_matrices(length):
+    global pos_2x
+    global pos_3x_1
+    global pos_4x
+    global pos_5x
+    if length == 2:
+        for i in range(10):
+            for j in range(10-length+1):
+                pos_2x[i][j] += 1
+                pos_2x[i][j+1] += 1
+        for k in range(10-length+1):
+            for l in range(10):
+                pos_2x[k][l] += 1
+                pos_2x[k+1][l] += 1
+    elif length == 3:
+        pass
+    elif length == 4:
+        pass
+    else:
+        pass
+
+def target_hit():
+    pass
+
+
+def hit_or_miss():
+    pass
+
+
+def ship_sunken():
+    pass
+
+
 ships = [
-    [0,0,0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0,0,0],
+    [ 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0],
+    [ 0 , 0 ,'X','X', 0 , 0 , 0 , 0 , 0 , 0],
+    [ 0 , 0 , 0 , 0 , 0 , 0 ,'X', 0 , 0 ,'X'],
+    [ 0 , 0 , 0 , 0 , 0 , 0 ,'X', 0 , 0 ,'X'],
+    [ 0 ,'X', 0 , 0 , 0 , 0 ,'X', 0 , 0 ,'X'],
+    [ 0 ,'X', 0 , 0 , 0 , 0 ,'X', 0 , 0 , 0],
+    [ 0 ,'X', 0 , 0 , 0 , 0 ,'X', 0 , 0 , 0],
+    [ 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0],
+    [ 0 , 0 , 0 ,'X','X','X','X', 0 , 0 , 0],
+    [ 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0],
     ]
 
 pos_2x = [
@@ -108,3 +145,6 @@ hits = [
     ]
 
 show(ships)
+print(ships[1][2])
+calculate_matrices(2)
+show(pos_2x)
