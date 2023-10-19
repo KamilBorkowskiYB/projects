@@ -1,3 +1,4 @@
+import random
 #             2x,3x,4x,5x
 sunken_ships = [0,0,0,0]
 
@@ -101,6 +102,32 @@ def target_hit():
     pass
 
 
+def where_to_shot():
+    global sum_pos
+    num_of_high_tiles = 0
+    x = random.randrange(10)
+    y = random.randrange(10)
+    maks = 0
+    for i in range(10):
+        for j in range(10):
+            if sum_pos[i][j] >= maks:
+                maks = sum_pos[i][j]
+    for k in range(10):
+        for l in range(10):
+            if sum_pos[k][l] == maks:
+                num_of_high_tiles += 1
+    if num_of_high_tiles > 1:
+        while sum_pos[x][y] != maks:
+            x = random.randrange(10)
+            y = random.randrange(10)
+
+    print(x)
+    print(y)
+    print(maks)
+    print(num_of_high_tiles)
+    print(hit_or_miss(x,y))
+
+
 def hit_or_miss(i, j):
     global ships
     if ships[i][j] == 'X':
@@ -194,8 +221,8 @@ hits = [
     [0,0,0,0,0,0,0,0,0,0],
     [0,0,0,0,0,0,0,0,0,0],
     [0,0,0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,1,0,0,0,0],
-    [0,0,0,0,1,0,1,0,0,0],
+    [0,0,0,0,0,0,0,0,0,0],
+    [0,0,0,0,0,0,0,0,0,0],
     [0,0,0,0,0,0,0,0,0,0],
     [0,0,0,0,0,0,0,0,0,0],
     [0,0,0,0,0,0,0,0,0,1],
@@ -205,3 +232,4 @@ hits = [
 
 seek_target()
 show(sum_pos)
+where_to_shot()
