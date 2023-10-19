@@ -1,11 +1,24 @@
 import random
 #             2x,3x,4x,5x
 sunken_ships = [0,0,0,0]
-
+ship_hit = False
 
 def show(x):
    for i in x:
        print(i)
+
+
+def move():
+    global ship_hit
+    if ship_hit:
+        target_hit()
+    else:
+        seek_target()
+        show(sum_pos)
+        where_to_shot()
+        show(hits)
+        clear_pos()
+
 
 # calculates sum of possibilities of ships
 def seek_target():
@@ -32,6 +45,7 @@ def seek_target():
     for i in range(10):
         for j in range(10):
             sum_pos[i][j] = pos_2x[i][j]+pos_3x[i][j]+pos_4x[i][j]+pos_5x[i][j]
+
 
 # calculates possibilities of individual ships
 def calculate_matrices(length):
@@ -104,19 +118,23 @@ def target_hit():
 
 def where_to_shot():
     global sum_pos
+    global hits
+    global ship_hit
     num_of_high_tiles = 0
-    x = random.randrange(10)
-    y = random.randrange(10)
     maks = 0
     for i in range(10):
         for j in range(10):
             if sum_pos[i][j] >= maks:
+                x = i
+                y = j
                 maks = sum_pos[i][j]
     for k in range(10):
         for l in range(10):
             if sum_pos[k][l] == maks:
                 num_of_high_tiles += 1
     if num_of_high_tiles > 1:
+        x = random.randrange(10)
+        y = random.randrange(10)
         while sum_pos[x][y] != maks:
             x = random.randrange(10)
             y = random.randrange(10)
@@ -125,7 +143,13 @@ def where_to_shot():
     print(y)
     print(maks)
     print(num_of_high_tiles)
-    print(hit_or_miss(x,y))
+    #print(hit_or_miss(x,y))
+    if hit_or_miss(x,y):
+        hits[x][y] = 2
+        ship_hit = True
+    else:
+        hits[x][y] = 1
+        ship_hit = False
 
 
 def hit_or_miss(i, j):
@@ -135,8 +159,25 @@ def hit_or_miss(i, j):
     else: return  False
 
 
+def update_hits():
+    pass
+
+
 def ship_sunken():
     pass
+
+
+def clear_pos():
+    global pos_2x
+    global pos_3x
+    global pos_4x
+    global pos_5x
+    for i in range(10):
+        for j in range(10):
+            pos_2x[i][j] = 0
+            pos_3x[i][j] = 0
+            pos_4x[i][j] = 0
+            pos_5x[i][j] = 0
 
 
 ships = [
@@ -225,11 +266,24 @@ hits = [
     [0,0,0,0,0,0,0,0,0,0],
     [0,0,0,0,0,0,0,0,0,0],
     [0,0,0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0,0,1],
-    [0,0,0,0,0,0,0,0,1,0],
-    [0,0,0,0,0,0,0,0,1,0],
+    [0,0,0,0,0,0,0,0,0,0],
+    [0,0,0,0,0,0,0,0,0,0],
+    [0,0,0,0,0,0,0,0,0,0],
     ]
 
-seek_target()
-show(sum_pos)
-where_to_shot()
+move()
+print('--------------------')
+move()
+print('--------------------')
+move()
+print('--------------------')
+move()
+print('--------------------')
+move()
+print('--------------------')
+move()
+print('--------------------')
+move()
+print('--------------------')
+move()
+
