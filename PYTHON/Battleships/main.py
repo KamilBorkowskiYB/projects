@@ -6,7 +6,7 @@ def show(x):
    for i in x:
        print(i)
 
-
+# calculates sum of possibilities of ships
 def seek_target():
     global sunken_ships
     global pos_2x
@@ -20,7 +20,7 @@ def seek_target():
         calculate_matrices(3)
         for k in range(10):
             for l in range(10):
-                pos_3x[k][l] =pos_3x[k][l]*2
+                pos_3x[k][l] = pos_3x[k][l]*2
     if sunken_ships[1] == 1:
         calculate_matrices(3)
     if sunken_ships[2] == 0:
@@ -32,7 +32,7 @@ def seek_target():
         for j in range(10):
             sum_pos[i][j] = pos_2x[i][j]+pos_3x[i][j]+pos_4x[i][j]+pos_5x[i][j]
 
-
+# calculates possibilities of individual ships
 def calculate_matrices(length):
     global pos_2x
     global pos_3x
@@ -101,8 +101,11 @@ def target_hit():
     pass
 
 
-def hit_or_miss():
-    pass
+def hit_or_miss(i, j):
+    global ships
+    if ships[i][j] == 'X':
+        return True
+    else: return  False
 
 
 def ship_sunken():
@@ -136,19 +139,6 @@ pos_2x = [
     ]
 
 pos_3x = [
-    [0,0,0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0,0,0],
-    ]
-
-pos_3x_2 = [
     [0,0,0,0,0,0,0,0,0,0],
     [0,0,0,0,0,0,0,0,0,0],
     [0,0,0,0,0,0,0,0,0,0],
