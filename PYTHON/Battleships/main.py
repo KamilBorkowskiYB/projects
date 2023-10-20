@@ -10,14 +10,11 @@ def show(x):
 
 def move():
     global ship_hit
-    if ship_hit:
-        target_hit()
-    else:
-        seek_target()
-        show(sum_pos)
-        where_to_shot()
-        show(hits)
-        clear_pos()
+    seek_target()
+    show(sum_pos)
+    where_to_shot()
+    show(hits)
+    clear_pos()
 
 
 # calculates sum of possibilities of ships
@@ -46,6 +43,8 @@ def seek_target():
         for j in range(10):
             sum_pos[i][j] = pos_2x[i][j]+pos_3x[i][j]+pos_4x[i][j]+pos_5x[i][j]
 
+    # need to check direction
+    target_hit()
 
 # calculates possibilities of individual ships
 def calculate_matrices(length):
@@ -113,7 +112,20 @@ def calculate_matrices(length):
 
 
 def target_hit():
-    pass
+    global sum_pos
+    global hits
+    global ship_hit
+    for i in range(10):
+        for j in range(10):
+            if hits[i][j] == 2:
+                if sum_pos[i-1][j] != 0:
+                    sum_pos[i-1][j] += 50
+                if sum_pos[i][j-1] != 0:
+                    sum_pos[i][j-1] += 50
+                if sum_pos[i+1][j] != 0:
+                    sum_pos[i+1][j] += 50
+                if sum_pos[i][j+1] != 0:
+                    sum_pos[i][j+1] += 50
 
 
 def where_to_shot():
