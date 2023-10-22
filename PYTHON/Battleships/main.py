@@ -3,6 +3,7 @@ import random
 sunken_ships = [0,0,0,0]
 ship_hit = False
 
+
 def show(x):
    for i in x:
        print(i)
@@ -162,11 +163,8 @@ def where_to_shot():
             x = random.randrange(10)
             y = random.randrange(10)
 
-    print(x)
-    print(y)
-    print(maks)
-    print(num_of_high_tiles)
-    #print(hit_or_miss(x,y))
+    print('Row: '+str(x+1)+' Column: '+str(y+1)+' Maximum value: '+str(maks))
+    print('Number of tiles with max value: '+str(num_of_high_tiles))
     if hit_or_miss(x,y):
         hits[x][y] = 2
         ship_hit = True
@@ -202,6 +200,45 @@ def clear_pos():
             pos_4x[i][j] = 0
             pos_5x[i][j] = 0
 
+
+def make_ship():
+    global ships_test
+    # making 2x ship
+    for s in range(2,6):
+        ship_made = True
+
+        while ship_made:
+            can_make_ship = True
+            x = random.randrange(0,9)
+            y = random.randrange(0,9)
+            if ships_test[x][y] != 1 and ships_test[x+1][y] != 1 and ships_test[x+1][y+1] != 1 and ships_test[x][y+1] != 1 and ships_test[x-1][y] != 1 and ships_test[x-1][y-1] != 1 and ships_test[x][y-1] != 1 and ships_test[x+1][y-1] != 1 and ships_test[x-1][y+1] != 1:
+                direction = random.randrange(2) # 0=vertical 1=horizontal
+                if direction == 0:
+                    if x+s-1 <= 9:
+                        print('***')
+                        for z in range(x,x+s-1):
+                            if ships_test[z][y] == 1 or ships_test[z+1][y] == 1 or ships_test[z+1][y+1] == 1 or ships_test[z][y+1] == 1 or ships_test[z-1][y] == 1 or ships_test[z-1][y-1] == 1 or ships_test[z][y-1] == 1 or ships_test[z+1][y-1] == 1 or ships_test[z-1][y+1] == 1:
+                                can_make_ship = False
+                        if can_make_ship:
+                            for k in range(x,x+s):
+                                ships_test[k][y] = 1
+                                show(ships_test)
+                                print('-----------------------------------')
+                            ship_made = False
+        # now direction == 1
+
+ships_test = [
+    [ 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0],
+    [ 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0],
+    [ 0 , 0 , 0 , 0 , 0 , 0 ,0, 0 , 0 ,0],
+    [ 0 , 0 , 0 , 0 , 0 , 0 ,0, 0 , 0 ,0],
+    [ 0 ,0, 0 , 0 , 0 , 0 ,0, 0 , 0 ,0],
+    [ 0 ,0, 0 , 0 , 0 , 0 ,0, 0 , 0 , 0],
+    [ 0 ,0, 0 , 0 , 0 , 0 ,0, 0 , 0 , 0],
+    [ 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0],
+    [ 0 , 0 , 0 ,0,0,0,0, 0 , 0 , 0],
+    [ 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0],
+    ]
 
 ships = [
     [ 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0],
@@ -294,19 +331,9 @@ hits = [
     [0,0,0,0,0,0,0,0,0,0],
     ]
 
-move()
-print('--------------------')
-move()
-print('--------------------')
-move()
-print('--------------------')
-move()
-print('--------------------')
-move()
-print('--------------------')
-move()
-print('--------------------')
-move()
-print('--------------------')
-move()
-
+"""
+for z in range(10):
+    move()
+    print('-----------------------------------')
+"""
+make_ship()
